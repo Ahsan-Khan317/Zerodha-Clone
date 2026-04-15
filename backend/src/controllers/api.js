@@ -1,22 +1,9 @@
-require("dotenv").config();
+import { HoldingsModel } from "./model/HoldingsModel.js";
+import { PositionsModel } from "./model/PositionsModel.js";
+import { OrdersModel } from "./model/OrdersModel.js";
 
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const cors = require("cors");
 
-const { HoldingsModel } = require("./model/HoldingsModel");
 
-const { PositionsModel } = require("./model/PositionsModel");
-const { OrdersModel } = require("./model/OrdersModel");
-
-const PORT = process.env.PORT || 3002;
-const uri = process.env.MONGO_URL;
-
-const app = express();
-
-app.use(cors());
-app.use(bodyParser.json());
 
 // app.get("/addHoldings", async (req, res) => {
 //   let tempHoldings = [
@@ -208,10 +195,4 @@ app.post("/newOrder", async (req, res) => {
   newOrder.save();
 
   res.send("Order saved!");
-});
-
-app.listen(PORT, () => {
-  console.log("App started!");
-  mongoose.connect(uri);
-  console.log("DB started!");
 });
