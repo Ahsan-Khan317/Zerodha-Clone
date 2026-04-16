@@ -1,11 +1,10 @@
-import { HoldingsModel } from "./model/HoldingsModel.js";
-import { PositionsModel } from "./model/PositionsModel.js";
-import { OrdersModel } from "./model/OrdersModel.js";
+import { HoldingsModel } from "../model/HoldingsModel.js"
+import { PositionsModel } from "../model/PositionsModel.js"
+import { OrdersModel } from "../model/OrdersModel.js"
 import asyncHandler from "../middleware/Error/asyncHandler.js"
 import ApiError from "../middleware/Error/ApiError.js"
 
 
-// app.get("/allHoldings",
 
 
 
@@ -27,7 +26,6 @@ if(!allHoldings) return next(new ApiError(404,"holdings data not found"))
 
 
 
-// app.get("/allPositions",
 
  export const allPositions = asyncHandler(
   async (req, res,next) => {
@@ -52,7 +50,8 @@ if(!allHoldings) return next(new ApiError(404,"holdings data not found"))
 
 
 
-app.post("/newOrder", async (req, res) => {
+export const newOrder = asyncHandler(
+   async (req, res) => {
   let newOrder = new OrdersModel({
     name: req.body.name,
     qty: req.body.qty,
@@ -63,4 +62,5 @@ app.post("/newOrder", async (req, res) => {
   newOrder.save();
 
   res.send("Order saved!");
-});
+}
+)
